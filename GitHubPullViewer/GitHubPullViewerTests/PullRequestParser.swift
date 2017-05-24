@@ -299,19 +299,16 @@ class PullRequestParser: XCTestCase {
         let pullRequest = PullRequest(jsonData: pullRequestDictionary)
 
         // Verify the elements are grabbed from the JSON as expected.
-        XCTAssertEqual(pullRequest.id, pullRequestDictionary["id"] as? Int ?? -1)
-        XCTAssertEqual(pullRequest.number, pullRequestDictionary["number"] as? Int ?? -1)
-        XCTAssertEqual(pullRequest.title, pullRequestDictionary["title"] as? String ?? "")
+        XCTAssertEqual(pullRequest.id, 121618349)
+        XCTAssertEqual(pullRequest.number, 1305)
+        XCTAssertEqual(pullRequest.title, "fix typos using misspell")
+        XCTAssertEqual(pullRequest.userName, "Lutzifer")
+
         XCTAssertEqual(pullRequest.body, pullRequestDictionary["body"] as? String ?? "")
 
         if let dateString = pullRequestDictionary["created_at"] as? String {
             XCTAssertEqual(pullRequest.createdDate, ISO8601DateFormatter().date(from: dateString) ?? Date())
         }
-
-        if let userData = pullRequestDictionary["user"] as? [String: Any] {
-            XCTAssertEqual(pullRequest.userName, userData["login"] as? String ?? "")
-        }
-
     }
     
 }

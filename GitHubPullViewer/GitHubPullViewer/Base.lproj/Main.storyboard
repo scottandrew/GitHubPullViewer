@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G8c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G8c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZD-GZ-l3E">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="icomoon.ttf">
+            <string>icomoon</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="DUe-3z-2Al">
@@ -28,50 +33,49 @@
             </objects>
             <point key="canvasLocation" x="421" y="33"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Pull Requests-->
         <scene sceneID="4YE-ul-BUI">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="XVR-mU-0Xd" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="XVR-mU-0Xd" customClass="PullRequestsTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cOI-Oy-KXS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="24C-uj-YzO">
-                                <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PullRequestTableViewCell" rowHeight="67" id="24C-uj-YzO" customClass="PullRequestTableViewCell" customModule="GitHubPullViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="24C-uj-YzO" id="fgZ-3M-o9N">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="66.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-yc-aTV">
-                                            <rect key="frame" x="8" y="10" width="359" height="55"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eVZ-yc-aTV">
+                                            <rect key="frame" x="8" y="10" width="326" height="46.5"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U9j-ms-Pcd">
-                                                    <rect key="frame" x="0.0" y="2.5" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="FFa-V7-KL9"/>
-                                                        <constraint firstAttribute="width" constant="50" id="IK1-T9-8Hr"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmc-uO-b31">
+                                                    <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                    <fontDescription key="fontDescription" name="icomoon" family="icomoon" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Irs-7b-58f">
-                                                    <rect key="frame" x="55" y="0.5" width="304" height="54.5"/>
+                                                    <rect key="frame" x="25" y="-0.5" width="301" height="47"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVW-Nr-0dC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVW-Nr-0dC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="301" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EM3-PS-RSe">
-                                                            <rect key="frame" x="0.0" y="20.5" width="304" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <rect key="frame" x="0.0" y="18" width="301" height="14.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H8-b3-fad">
-                                                            <rect key="frame" x="0.0" y="37.5" width="304" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H8-b3-fad">
+                                                            <rect key="frame" x="0.0" y="32.5" width="301" height="14.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -81,12 +85,19 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="eVZ-yc-aTV" firstAttribute="top" secondItem="fgZ-3M-o9N" secondAttribute="topMargin" constant="2" id="C5A-Ft-pLN"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="eVZ-yc-aTV" secondAttribute="bottom" constant="2.5" id="Gpb-MJ-kkU"/>
-                                        <constraint firstItem="eVZ-yc-aTV" firstAttribute="leading" secondItem="fgZ-3M-o9N" secondAttribute="leadingMargin" id="cq8-f9-BAG"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="eVZ-yc-aTV" secondAttribute="trailing" id="xKy-EV-a1Z"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eVZ-yc-aTV" secondAttribute="trailing" id="Bn8-hy-f3u"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="eVZ-yc-aTV" secondAttribute="bottom" constant="2" id="EIT-PW-EtI"/>
+                                        <constraint firstItem="eVZ-yc-aTV" firstAttribute="top" secondItem="fgZ-3M-o9N" secondAttribute="topMargin" constant="2" id="RvC-di-GdA"/>
+                                        <constraint firstItem="eVZ-yc-aTV" firstAttribute="leading" secondItem="fgZ-3M-o9N" secondAttribute="leadingMargin" id="ZTh-8y-S84"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="extendDescriptionLabel" destination="2H8-b3-fad" id="ap1-7P-O6a"/>
+                                    <outlet property="infoLabel" destination="EM3-PS-RSe" id="kvB-JG-1Rd"/>
+                                    <outlet property="nameLabel" destination="PVW-Nr-0dC" id="N1e-DG-Cso"/>
+                                    <outlet property="statusIconLabel" destination="Hmc-uO-b31" id="VHo-WU-r0V"/>
+                                    <segue destination="D4N-tp-twq" kind="show" id="OZQ-uF-exO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -94,11 +105,51 @@
                             <outlet property="delegate" destination="XVR-mU-0Xd" id="PCF-Dj-3fQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="YgJ-Xx-WEn"/>
+                    <navigationItem key="navigationItem" title="Pull Requests" id="YgJ-Xx-WEn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yb-18-bI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="-622"/>
+            <point key="canvasLocation" x="1372" y="-622.03898050974522"/>
+        </scene>
+        <!--Changed Files-->
+        <scene sceneID="bmg-vL-RpF">
+            <objects>
+                <tableViewController title="Changed Files" id="D4N-tp-twq" customClass="ChangedFilesTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9mI-Ob-3wd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChangedFileTableViewCell" id="t8x-mE-tzE" customClass="ChangedFileTableViewCell" customModule="GitHubPullViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t8x-mE-tzE" id="iPe-ig-dcY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN4-21-3np">
+                                            <rect key="frame" x="8" y="8" width="359" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fileNameLabel" destination="oN4-21-3np" id="jl2-kP-Fwk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D4N-tp-twq" id="DBw-Ic-1mA"/>
+                            <outlet property="delegate" destination="D4N-tp-twq" id="neP-3p-X0O"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YxV-JV-MW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2152.8000000000002" y="-622.03898050974522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Mz-O0-U2R">
@@ -116,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="420" y="-622"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Git Hub Pull Request View Controller-->
         <scene sceneID="Gd0-i6-cqw">
             <objects>
-                <splitViewController id="bZD-GZ-l3E" sceneMemberID="viewController">
+                <splitViewController id="bZD-GZ-l3E" customClass="GitHubPullRequestViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="VVy-9b-Sbd" kind="relationship" relationship="masterViewController" id="lsQ-bP-C4W"/>
                         <segue destination="vMf-ib-NG6" kind="relationship" relationship="detailViewController" id="L08-md-KID"/>

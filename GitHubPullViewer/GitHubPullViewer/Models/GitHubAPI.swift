@@ -14,7 +14,7 @@ enum GitHubAPIError: Error {
 }
 
 class GitHubAPI {
-    fileprivate let baseURL = "https://api.github.com/repos/magicalpanda/MagicalRecord"
+    fileprivate let baseURL = "https://api.github.com/repos/magicalpanda/MagicalRecord/"
     fileprivate let successRange = 200...299
 
     private func makeAPICall(request: URLRequest, arguments: [String:Any]?, responseHandler: @escaping (Any?, Error?) -> Void) {
@@ -32,7 +32,7 @@ class GitHubAPI {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
 
                     if let response = response as? HTTPURLResponse {
-                        // Short cut to see fi value is in the range.
+                        // Short cut to see if value is in the range.
                         if self.successRange ~= response.statusCode {
                             responseHandler(json, nil)
                         } else {
@@ -62,12 +62,29 @@ class GitHubAPI {
                 var pullRequests = [PullRequest]()
 
                 if let jsonData = jsonData as? [[String: Any]] {
-                    for pullJSON in jsonData {
-                        pullRequests.append(PullRequest(jsonData: pullJSON))
-                    }
+                    pullRequests = jsonData.flatMap { PullRequest(jsonData: $0) }
                 }
 
                 result(pullRequests, error)
+            }
+        }
+    }
+
+    func getFiles(pullRequest: PullRequest, result: @escaping ([ChangedFile], Error?) -> Void) {
+        if let URL = URL(string: baseURL + "pulls/\(pullRequest.number)/files") {
+            var request = URLRequest(url: URL)
+            request.httpMethod = "GET"
+
+            makeAPICall(request: request,
+                        arguments: nil) { (jsonData: Any, error: Error?) in
+
+                var files = [ChangedFile]()
+
+                if let jsonData = jsonData as? [[String: Any]] {
+                    files = jsonData.flatMap { ChangedFile(jsonData: $0) }
+                }
+
+                result(files, error)
             }
         }
     }
