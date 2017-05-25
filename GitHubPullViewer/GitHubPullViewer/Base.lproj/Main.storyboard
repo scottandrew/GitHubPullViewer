@@ -153,18 +153,86 @@
         <scene sceneID="V6M-oo-4nf">
             <objects>
                 <tableViewController storyboardIdentifier="DiffTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pwe-fp-sw3" customClass="DiffTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UNv-y0-I1r">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" id="UNv-y0-I1r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y2f-Pl-oPm">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiffLineTableViewCell" rowHeight="27" id="y2f-Pl-oPm" customClass="DiffLineTableViewCell" customModule="GitHubPullViewer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="27"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2f-Pl-oPm" id="d3r-YI-S9q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="27"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NrX-Tn-kOm">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="26.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="KAA-Ei-Z4a" customClass="LineView" customModule="GitHubPullViewer" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="12.5" width="172" height="14"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAC-3f-dJL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="35" id="k5o-bI-rPV"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cr5-6V-Gmw">
+                                                            <rect key="frame" x="35" y="0.0" width="137" height="14"/>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="lineNumberLabel" destination="rAC-3f-dJL" id="e1I-GQ-LOq"/>
+                                                        <outlet property="textLabel" destination="Cr5-6V-Gmw" id="Y10-sI-zFw"/>
+                                                    </connections>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="LQj-aq-Eba" customClass="LineView" customModule="GitHubPullViewer" customModuleProvider="target">
+                                                    <rect key="frame" x="187" y="12.5" width="172" height="14"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycp-8j-nNg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="35" id="tIk-Ii-kI7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue2-NN-FOk">
+                                                            <rect key="frame" x="35" y="0.0" width="137" height="14"/>
+                                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="lineNumberLabel" destination="ycp-8j-nNg" id="Zz5-Gi-9jG"/>
+                                                        <outlet property="textLabel" destination="Ue2-NN-FOk" id="lug-hy-e7B"/>
+                                                    </connections>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KAA-Ei-Z4a" firstAttribute="width" secondItem="LQj-aq-Eba" secondAttribute="width" id="Ua4-L0-feB"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NrX-Tn-kOm" firstAttribute="top" secondItem="d3r-YI-S9q" secondAttribute="top" id="9gG-lF-uHZ"/>
+                                        <constraint firstItem="NrX-Tn-kOm" firstAttribute="leading" secondItem="d3r-YI-S9q" secondAttribute="leading" constant="8" id="M1Q-2m-TJd"/>
+                                        <constraint firstAttribute="bottom" secondItem="NrX-Tn-kOm" secondAttribute="bottom" id="muC-Lv-9Ug"/>
+                                        <constraint firstAttribute="trailing" secondItem="NrX-Tn-kOm" secondAttribute="trailing" constant="8" id="tEb-8R-ba8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="additionLineView" destination="LQj-aq-Eba" id="Hbf-0K-mdO"/>
+                                    <outlet property="subtractionLineView" destination="KAA-Ei-Z4a" id="jxL-IW-4p1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -176,7 +244,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kb6-bl-vMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1262" y="105"/>
+            <point key="canvasLocation" x="1261.5999999999999" y="104.7976011994003"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IFD-3g-eFF">

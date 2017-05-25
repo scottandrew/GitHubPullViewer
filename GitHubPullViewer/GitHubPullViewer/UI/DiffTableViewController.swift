@@ -10,9 +10,13 @@ import UIKit
 
 class DiffTableViewController: UITableViewController {
 
+    var patch: Patch?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.estimatedRowHeight = 20
+        tableView.rowHeight = UITableViewAutomaticDimension
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,23 +33,26 @@ class DiffTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return patch?.diffLines.count ?? 0
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "DiffLineTableViewCell", for: indexPath) as? DiffLineTableViewCell {
+            cell.lineDiff = patch?.diffLines[indexPath.row]
+
+            return cell
+        }
 
         // Configure the cell...
-
-        return cell
+        return UITableViewCell()
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

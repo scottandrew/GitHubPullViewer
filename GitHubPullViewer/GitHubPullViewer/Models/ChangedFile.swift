@@ -18,6 +18,7 @@ struct ChangedFile {
 
     let fileName: String
     let status: Status
+    let patch: Patch?
 
     init(jsonData: [String: Any]) {
         fileName = jsonData["filename"] as? String ?? ""
@@ -27,6 +28,12 @@ struct ChangedFile {
         }
         else {
             status = .unknown
+        }
+
+        if let diff = jsonData["patch"] as? String {
+            patch = PatchParser().parse(diff: diff)
+        } else {
+            patch = nil
         }
     }
 }

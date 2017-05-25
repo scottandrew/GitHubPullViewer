@@ -59,10 +59,13 @@ class ChangedFilesTableViewController: UITableViewController {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
 
         } else {
-            let diffViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiffTableViewController")
+            if let diffViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiffTableViewController") as? DiffTableViewController {
 
-            self.navigationController?.pushViewController(diffViewController, animated: true)
+                diffViewController.patch = changedFiles[indexPath.row].patch
+                
+                self.navigationController?.pushViewController(diffViewController, animated: true)
 
+            }
         }
     }
 }

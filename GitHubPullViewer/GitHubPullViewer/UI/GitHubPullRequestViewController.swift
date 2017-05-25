@@ -46,28 +46,21 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
 
+        var patch: Patch?
+
         if let navController = primaryViewController as? UINavigationController,
             let topMostView = navController.viewControllers.last as? DiffTableViewController {
             navController.popViewController(animated: false)
+            patch = topMostView.patch
         }
 
         // lets look at our primary view controller's top view. navigation view then we can show
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController")
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? UINavigationController
+
+        let newDiffController = controller?.viewControllers.first as? DiffTableViewController
+        newDiffController?.patch = patch
 
         return controller
     }
-//    func splitViewController(splitViewController: UISplitViewController,
-//                             collapseSecondaryViewController secondaryViewController:UIViewController,
-//                             ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
-//
-//        //guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-//        //guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-//
-////        if topAsDetailController.detailItem == nil {
-////            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-////            return true
-////        }
-//
-//        return false
-//    }
+
 }
