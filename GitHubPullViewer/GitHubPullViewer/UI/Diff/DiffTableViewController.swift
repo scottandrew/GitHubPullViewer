@@ -23,7 +23,7 @@ class DiffTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 20
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        // listen for path seelct changed..
+        // listen for path select changed..
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onPatchSelectionChanged),
                                                name: ChangedFilesTableViewController.selectedFilesChangedNotification,
