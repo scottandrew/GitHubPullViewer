@@ -68,9 +68,7 @@ extension PullRequestsTableViewController {
 
         gitHub.getPRs  { (pullRequests, error) in
             if let error = error {
-                let alertView = UIAlertController(title: "Error",
-                                                  message: error.localizedDescription,
-                                                  preferredStyle: .alert)
+                let alertView = UIAlertController(error: error)
 
                 self.present(alertView, animated: true, completion: nil)
 

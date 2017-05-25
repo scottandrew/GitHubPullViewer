@@ -15,25 +15,13 @@ class GitHubPullRequestViewController: UISplitViewController {
 
         delegate = self
 
-        // Do any additional setup after loading the view.
+        // Make sure to show the expand icon if not expaded.
+        if !self.isCollapsed {
+            let detail = self.viewControllers[1] as? UINavigationController
+
+            detail?.viewControllers.last?.navigationItem.leftBarButtonItem = displayModeButtonItem
+        }
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -51,6 +39,7 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
                 // If the master is showing the changed files view controller then we can push the details
                 // onto the master stack.
                 if masterNavigationController.viewControllers.last is ChangedFilesTableViewController {
+                    diffController.navigationItem.leftBarButtonItem = nil
                     masterNavigationController.pushViewController(diffController, animated: false)
                 }
             }
@@ -79,6 +68,7 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
         let newDiffController = controller?.viewControllers.first as? DiffTableViewController
 
+        newDiffController?.navigationItem.leftBarButtonItem = displayModeButtonItem
         // set the patch that was viewed.
         newDiffController?.patch = patch
 
