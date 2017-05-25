@@ -41,6 +41,22 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
 
+
+        if let masterNavigationController = primaryViewController as? UINavigationController,
+           let detailNavigationController = secondaryViewController as? UINavigationController {
+
+            // If we are display the diff controller.
+            if let diffController = detailNavigationController.viewControllers.last as? DiffTableViewController {
+
+                // If the master is showing the changed files view controller then we can push the details
+                // onto the master stack.
+                if masterNavigationController.viewControllers.last is ChangedFilesTableViewController {
+                    masterNavigationController.pushViewController(diffController, animated: false)
+                }
+            }
+        }
+
+        // We control the collapsing so return true.
         return true
     }
 
@@ -48,7 +64,11 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
         var patch: Patch?
 
+        // Get the top most view master view controller.
         if let navController = primaryViewController as? UINavigationController,
+
+            // If the top most master is our diff controller then we need the patch and 
+            // and pop it off thestack.
             let topMostView = navController.viewControllers.last as? DiffTableViewController {
             navController.popViewController(animated: false)
             patch = topMostView.patch
@@ -58,6 +78,8 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? UINavigationController
 
         let newDiffController = controller?.viewControllers.first as? DiffTableViewController
+
+        // set the patch that was viewed.
         newDiffController?.patch = patch
 
         return controller

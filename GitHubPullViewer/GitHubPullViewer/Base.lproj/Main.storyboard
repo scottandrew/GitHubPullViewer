@@ -18,7 +18,7 @@
         <!--Pull Requests-->
         <scene sceneID="4YE-ul-BUI">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="XVR-mU-0Xd" customClass="PullRequestsTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PullRequestsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="XVR-mU-0Xd" customClass="PullRequestsTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cOI-Oy-KXS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
         <!--Changed Files-->
         <scene sceneID="bmg-vL-RpF">
             <objects>
-                <tableViewController title="Changed Files" id="D4N-tp-twq" customClass="ChangedFilesTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChangedFilesTableViewController" title="Changed Files" useStoryboardIdentifierAsRestorationIdentifier="YES" id="D4N-tp-twq" customClass="ChangedFilesTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9mI-Ob-3wd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -136,8 +136,8 @@
         <!--Navigation Controller-->
         <scene sceneID="3Mz-O0-U2R">
             <objects>
-                <navigationController id="VVy-9b-Sbd" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WPE-bD-zC3">
+                <navigationController storyboardIdentifier="MasterViewControler" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VVy-9b-Sbd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WPE-bD-zC3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -259,7 +259,7 @@
         <scene sceneID="IFD-3g-eFF">
             <objects>
                 <navigationController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="waj-dp-jfM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3oo-1R-voJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3oo-1R-voJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

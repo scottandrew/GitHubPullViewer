@@ -10,6 +10,8 @@ import UIKit
 
 class ChangedFilesTableViewController: UITableViewController {
 
+    static let selectedFilesChangedNotification = Notification.Name("selectedFilesChanged")
+
     var changedFiles = [ChangedFile]()
     var pullRequest: PullRequest?
 
@@ -26,7 +28,7 @@ class ChangedFilesTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         // If we are appearing and are portrait make sure nothing is selected.
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+        if self.view.window?.traitCollection.horizontalSizeClass == .compact {
             tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         }
     }
@@ -56,7 +58,19 @@ class ChangedFilesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+        // If the window is not on a smaller screen we need to post a notification that we have changed
+        // our selection since we can't just push on to our navigation stack.
+        if self.view.window?.traitCollection.horizontalSizeClass != .compact {
+            var userInfo: [AnyHashable: Any]?
+
+            if let patch = changedFiles[indexPath.row].patch {
+                userInfo = ["patch": patch]
+            }
+
+            // If we have a patch show it..
+            NotificationCenter.default.post(name: ChangedFilesTableViewController.selectedFilesChangedNotification,
+                                            object: nil,
+                                            userInfo: userInfo)
 
         } else {
             if let diffViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiffTableViewController") as? DiffTableViewController {
@@ -64,7 +78,6 @@ class ChangedFilesTableViewController: UITableViewController {
                 diffViewController.patch = changedFiles[indexPath.row].patch
                 
                 self.navigationController?.pushViewController(diffViewController, animated: true)
-
             }
         }
     }
