@@ -11,6 +11,7 @@ import UIKit
 class PullRequestsTableViewController: UITableViewController {
 
     var pullRequests = [PullRequest]()
+    let gitHub = GitHubAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,29 +67,33 @@ extension PullRequestsTableViewController {
 // MARK: Network and refresh.
 extension PullRequestsTableViewController {
     func refresh() {
-        let gitHub = GitHubAPI()
+
 
         // Show our acticity indicator
         showActivityIndicator()
 
         // Get the PR list.
-        gitHub.getPRs  { (pullRequests, error) in
+        gitHub.getPRs  { [weak self] (pullRequests, error) in
+
+            guard let strongSelf = self else {
+                return
+            }
 
             // No more activity indiciator needed.
-            self.removeActivityIndicator()
+            strongSelf.removeActivityIndicator()
 
             // Show error and refresh list (empty if error)
             DispatchQueue.main.async {
                 if let error = error {
                     let alertView = UIAlertController(error: error)
 
-                    self.present(alertView, animated: true, completion: nil)
+                    strongSelf.present(alertView, animated: true, completion: nil)
 
                     return
                 }
 
-                self.pullRequests = pullRequests
-                self.tableView.reloadData()
+                strongSelf.pullRequests = pullRequests
+                strongSelf.tableView.reloadData()
             }
         }
     }

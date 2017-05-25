@@ -14,6 +14,7 @@ class ChangedFilesTableViewController: UITableViewController {
 
     var changedFiles = [ChangedFile]()
     var pullRequest: PullRequest?
+    let gitHubAPI = GitHubAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,17 +98,21 @@ extension ChangedFilesTableViewController {
         showActivityIndicator()
 
         //getFiles(pullRequest: PullRequest, result: @escaping ([ChangedFile], Error?) -> Void)
-        GitHubAPI().getFiles(pullRequest: pullRequest) { (changedFiles: [ChangedFile], error: Error?) in
+        gitHubAPI.getFiles(pullRequest: pullRequest) {[weak self] (changedFiles: [ChangedFile], error: Error?) in
+            guard let strongSelf = self else {
+                return
+            }
+
             DispatchQueue.main.async {
-                self.removeActivityIndicator()
+                strongSelf.removeActivityIndicator()
 
                 if let error = error {
                     let alert = UIAlertController(error: error)
-                    self.present(alert, animated: true, completion: nil)
+                    strongSelf.present(alert, animated: true, completion: nil)
                 }
 
-                self.changedFiles = changedFiles
-                self.tableView.reloadData()
+                strongSelf.changedFiles = changedFiles
+                strongSelf.tableView.reloadData()
             }
         }
     }

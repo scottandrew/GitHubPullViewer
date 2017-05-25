@@ -16,11 +16,16 @@ enum GitHubAPIError: Error {
 class GitHubAPI {
     fileprivate let baseURL = "https://api.github.com/repos/magicalpanda/MagicalRecord/"
     fileprivate let successRange = 200...299
+    let session = URLSession(configuration: URLSessionConfiguration.default)
 
     private func makeAPICall(request: URLRequest, arguments: [String:Any]?, responseHandler: @escaping (Any?, Error?) -> Void) {
-        let session = URLSession(configuration: URLSessionConfiguration.default)
 
-         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+
+         let task = session.dataTask(with: request) { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
+
+            guard let strongSelf = self else {
+                return
+            }
 
             if let error = error {
                 responseHandler(nil, error)
@@ -33,7 +38,7 @@ class GitHubAPI {
 
                     if let response = response as? HTTPURLResponse {
                         // Short cut to see if value is in the range.
-                        if self.successRange ~= response.statusCode {
+                        if strongSelf.successRange ~= response.statusCode {
                             responseHandler(json, nil)
                         } else {
                             responseHandler(nil, GitHubAPIError.networkError("Resposne error \(response.statusCode)"))
