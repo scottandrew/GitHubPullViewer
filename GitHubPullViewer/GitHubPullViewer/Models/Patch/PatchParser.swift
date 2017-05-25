@@ -20,6 +20,7 @@ class PatchParser {
             self.parse(line: line)
         }
 
+        // Make sure we balance things out to make our display easy.
         balance()
 
         var lines = [DiffLine]()
@@ -39,7 +40,7 @@ class PatchParser {
     }
 
     fileprivate func parsePatchInfo(infoLine: String) -> PatchInfo {
-        print(infoLine)
+
         // lets split our strings at spaces.. The middle will be our values.
         let lineData = infoLine.components(separatedBy: " ").flatMap { (component) -> LineInfo? in
             if component != "@@" {
@@ -62,8 +63,6 @@ class PatchParser {
     fileprivate func balance() {
         let difference = abs(subtractions.count - additions.count)
 
-        print(difference)
-
         // someone is not like another one.. We should the same number. Any gaps will be nil.
         if difference > 0 {
             for _ in 0 ..< difference {
@@ -78,6 +77,15 @@ class PatchParser {
     }
 
     fileprivate func parse(line: String) {
+
+        // We have tags to deal with the rules are:
+        //
+        // * Line starts with @@ we have our starting line and count
+        // * + Add the line info into the additions array
+        // * - Add the line info into the subractions array.
+        // * If the line is not tagged we need to blance out the 
+        //   arrays, padding with nil, and add the unchanged line
+        //   info into both additions and deletions.
         if line.hasPrefix("@@") {
             let parseInfo = parsePatchInfo(infoLine: line)
             currentSubtractionLineNumber = parseInfo.subtractions.start
