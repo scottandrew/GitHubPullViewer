@@ -40,7 +40,21 @@ class GitHubPullRequestViewController: UISplitViewController {
 extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+
         return true
+    }
+
+    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+
+        if let navController = primaryViewController as? UINavigationController,
+            let topMostView = navController.viewControllers.last as? DiffTableViewController {
+            navController.popViewController(animated: false)
+        }
+
+        // lets look at our primary view controller's top view. navigation view then we can show
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController")
+
+        return controller
     }
 //    func splitViewController(splitViewController: UISplitViewController,
 //                             collapseSecondaryViewController secondaryViewController:UIViewController,

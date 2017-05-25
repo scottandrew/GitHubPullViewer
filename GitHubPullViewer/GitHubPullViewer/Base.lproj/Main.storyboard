@@ -15,24 +15,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="DUe-3z-2Al">
-            <objects>
-                <viewController id="vMf-ib-NG6" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wGZ-OA-fXI"/>
-                        <viewControllerLayoutGuide type="bottom" id="mfc-eP-YEw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="obV-zw-ZyN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0N6-2b-JWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="421" y="33"/>
-        </scene>
         <!--Pull Requests-->
         <scene sceneID="4YE-ul-BUI">
             <objects>
@@ -96,7 +78,7 @@
                                     <outlet property="infoLabel" destination="EM3-PS-RSe" id="kvB-JG-1Rd"/>
                                     <outlet property="nameLabel" destination="PVW-Nr-0dC" id="N1e-DG-Cso"/>
                                     <outlet property="statusIconLabel" destination="Hmc-uO-b31" id="VHo-WU-r0V"/>
-                                    <segue destination="D4N-tp-twq" kind="show" id="OZQ-uF-exO"/>
+                                    <segue destination="D4N-tp-twq" kind="show" id="4ZE-Qk-IqW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -155,7 +137,7 @@
         <scene sceneID="3Mz-O0-U2R">
             <objects>
                 <navigationController id="VVy-9b-Sbd" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WPE-bD-zC3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WPE-bD-zC3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -167,18 +149,63 @@
             </objects>
             <point key="canvasLocation" x="420" y="-622"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="V6M-oo-4nf">
+            <objects>
+                <tableViewController storyboardIdentifier="DiffTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pwe-fp-sw3" customClass="DiffTableViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UNv-y0-I1r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y2f-Pl-oPm">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2f-Pl-oPm" id="d3r-YI-S9q">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pwe-fp-sw3" id="1H8-gh-VcK"/>
+                            <outlet property="delegate" destination="pwe-fp-sw3" id="cA4-qs-ECx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="7OL-gp-Z32"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kb6-bl-vMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="105"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IFD-3g-eFF">
+            <objects>
+                <navigationController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="waj-dp-jfM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3oo-1R-voJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pwe-fp-sw3" kind="relationship" relationship="rootViewController" id="Edh-x5-xir"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ajQ-t0-UJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="24"/>
+        </scene>
         <!--Git Hub Pull Request View Controller-->
         <scene sceneID="Gd0-i6-cqw">
             <objects>
                 <splitViewController id="bZD-GZ-l3E" customClass="GitHubPullRequestViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="VVy-9b-Sbd" kind="relationship" relationship="masterViewController" id="lsQ-bP-C4W"/>
-                        <segue destination="vMf-ib-NG6" kind="relationship" relationship="detailViewController" id="L08-md-KID"/>
+                        <segue destination="waj-dp-jfM" kind="relationship" relationship="detailViewController" id="A4J-c4-r9v"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSd-sT-X8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-532" y="-295"/>
+            <point key="canvasLocation" x="-580" y="-351"/>
         </scene>
     </scenes>
 </document>

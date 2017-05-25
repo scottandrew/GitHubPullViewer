@@ -16,23 +16,32 @@ class ChangedFilesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.clearsSelectionOnViewWillAppear = false
+
         self.refresh()
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // If we are appearing and are portrait make sure nothing is selected.
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return changedFiles.count
     }
 
@@ -44,6 +53,17 @@ class ChangedFilesTableViewController: UITableViewController {
         }
 
         return UITableViewCell()
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+
+        } else {
+            let diffViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiffTableViewController")
+
+            self.navigationController?.pushViewController(diffViewController, animated: true)
+
+        }
     }
 }
 
@@ -66,6 +86,5 @@ extension ChangedFilesTableViewController {
                 self.tableView.reloadData()
             }
         }
-    
     }
 }
