@@ -19,6 +19,9 @@ struct ChangedFile {
     let fileName: String
     let status: Status
     let patch: Patch?
+    let changes: Int
+    let deletions: Int
+    let additions: Int
 
     init(jsonData: [String: Any]) {
         fileName = jsonData["filename"] as? String ?? ""
@@ -35,5 +38,9 @@ struct ChangedFile {
         } else {
             patch = nil
         }
+
+        changes = jsonData["changes"] as? Int ?? 0
+        additions = jsonData["additions"] as? Int ?? 0
+        deletions = jsonData["deletions"] as? Int ?? 0
     }
 }

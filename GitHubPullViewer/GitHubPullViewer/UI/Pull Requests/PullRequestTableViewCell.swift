@@ -27,13 +27,21 @@ class PullRequestTableViewCell: UITableViewCell {
 
     var pullRequest: PullRequest? {
         didSet {
-            nameLabel.text = pullRequest?.title
+            if let pullRequest = pullRequest {
+                nameLabel.text = pullRequest.title
 
-            infoLabel.text = buildInfoString()
+                infoLabel.text = buildInfoString()
 
-            extendDescriptionLabel.isHidden = (pullRequest?.body.characters.count ?? 0) == 0
-            extendDescriptionLabel.text = pullRequest?.body
+                extendDescriptionLabel.isHidden = pullRequest.body.characters.count == 0
+                extendDescriptionLabel.text = pullRequest.body
+            }
         }
+    }
+
+    override func prepareForReuse() {
+        nameLabel.text = nil
+        infoLabel.text = nil
+        extendDescriptionLabel.text = nil
     }
 
 }

@@ -29,6 +29,8 @@ class DiffLineTableViewCell: UITableViewCell {
             subtractionLineView.diff = lineDiff?.left
             additionLineView.diff = lineDiff?.right
 
+            // If we have text then we have to under pin it with a color. Other wise use gray 
+            // to represent the void.
             if let leftText = lineDiff?.left?.text {
                 if leftText.hasPrefix("-") {
                     subtractionBackground.backgroundColor = UIColor.red.withAlphaComponent(0.15)
@@ -39,6 +41,8 @@ class DiffLineTableViewCell: UITableViewCell {
                 subtractionBackground.backgroundColor =  UIColor.lightGray.withAlphaComponent(0.15)
             }
 
+            // If we have text then we have to under pin it with a color. Other wise use gray
+            // to represent the void.
             if let rightText = lineDiff?.right?.text {
                 if rightText.hasPrefix("+") {
                     additionBackground.backgroundColor = UIColor.green.withAlphaComponent(0.15)
@@ -48,8 +52,6 @@ class DiffLineTableViewCell: UITableViewCell {
             } else {
                  additionBackground.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
             }
-
-            self.setNeedsLayout()
         }
     }
 
@@ -60,18 +62,26 @@ class DiffLineTableViewCell: UITableViewCell {
         contentView.insertSubview(additionBackground, at: 0)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override func prepareForReuse() {
+        super.prepareForReuse()
 
-        // Configure the view for the selected state
+        subtractionLineView.diff = nil
+        additionLineView.diff = nil
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
 
-        subtractionBackground.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width/2.0, height: contentView.bounds.height)
-       additionBackground.frame = CGRect(x: contentView.bounds.width/2.0, y: 0, width: contentView.bounds.width/2.0, height: contentView.bounds.height)
+        subtractionBackground.frame = CGRect(x: 0,
+                                             y: 0,
+                                             width: contentView.bounds.width/2.0,
+                                             height: contentView.bounds.height)
+
+        additionBackground.frame = CGRect(x: contentView.bounds.width/2.0,
+                                          y: 0,
+                                          width: contentView.bounds.width/2.0,
+                                          height: contentView.bounds.height)
     }
 
 }

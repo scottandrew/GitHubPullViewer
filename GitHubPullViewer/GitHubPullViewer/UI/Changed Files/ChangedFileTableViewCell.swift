@@ -11,22 +11,29 @@ import UIKit
 class ChangedFileTableViewCell: UITableViewCell {
 
     @IBOutlet weak var fileNameLabel: UILabel!
+    @IBOutlet weak var changeCountLabel: UILabel!
+    @IBOutlet weak var deletionsCountLabel: UILabel!
+    @IBOutlet weak var additionsCountLabel: UILabel!
 
     var changedFile: ChangedFile? {
         didSet {
-            fileNameLabel.text = changedFile?.fileName
+            if let changedFile = changedFile {
+                fileNameLabel.text = changedFile.fileName
+                changeCountLabel.text = "\(changedFile.changes) Changes"
+                deletionsCountLabel.text = "\(changedFile.deletions) Deletions"
+                additionsCountLabel.text = "\(changedFile.additions) Additions"
+            }
         }
     }
 
+    override func prepareForReuse() {
+        fileNameLabel.text = nil
+        changeCountLabel.text = nil
+        deletionsCountLabel.text = nil
+        additionsCountLabel.text = nil
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

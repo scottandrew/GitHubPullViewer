@@ -17,10 +17,12 @@ class ChangedFilesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearsSelectionOnViewWillAppear = false
 
-        self.clearsSelectionOnViewWillAppear = false
-
-        self.refresh()
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        refresh()
     }
 
 
