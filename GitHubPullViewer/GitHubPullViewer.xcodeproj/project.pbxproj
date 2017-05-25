@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800FC5C51ED64312001B1C76 /* DiffTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FC5C41ED64312001B1C76 /* DiffTableViewController.swift */; };
 		801007D11ED3D183004493B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801007D01ED3D183004493B4 /* AppDelegate.swift */; };
 		801007D31ED3D183004493B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801007D21ED3D183004493B4 /* ViewController.swift */; };
 		801007D61ED3D183004493B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 801007D41ED3D183004493B4 /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800FC5C41ED64312001B1C76 /* DiffTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffTableViewController.swift; sourceTree = "<group>"; };
+		800FC5C61ED64CC3001B1C76 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		801007CD1ED3D183004493B4 /* GitHubPullViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubPullViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		801007D01ED3D183004493B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		801007D21ED3D183004493B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +83,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800FC5F31ED68F45001B1C76 /* Patch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Patch;
+			sourceTree = "<group>";
+		};
 		801007C41ED3D183004493B4 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +118,7 @@
 				801007D01ED3D183004493B4 /* AppDelegate.swift */,
 				801007D21ED3D183004493B4 /* ViewController.swift */,
 				801007D41ED3D183004493B4 /* Main.storyboard */,
+				800FC5C61ED64CC3001B1C76 /* MyPlayground.playground */,
 				801007D71ED3D183004493B4 /* Assets.xcassets */,
 				801007D91ED3D184004493B4 /* LaunchScreen.storyboard */,
 				801007DC1ED3D184004493B4 /* Info.plist */,
@@ -129,6 +140,7 @@
 		801007F01ED3D42D004493B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				800FC5F31ED68F45001B1C76 /* Patch */,
 				801007F11ED3D497004493B4 /* PullRequest.swift */,
 				801007F31ED3D751004493B4 /* GitHubAPI.swift */,
 				80C4DA481ED59E6D0032781C /* ChangedFile.swift */,
@@ -160,6 +172,7 @@
 				80C4DA461ED52C080032781C /* GitHubPullRequestViewController.swift */,
 				80C4DA4C1ED5A7070032781C /* ChangedFileTableViewCell.swift */,
 				80C4DA4E1ED5A7380032781C /* ChangedFilesTableViewController.swift */,
+				800FC5C41ED64312001B1C76 /* DiffTableViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -278,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800FC5C51ED64312001B1C76 /* DiffTableViewController.swift in Sources */,
 				80C4DA451ED522EC0032781C /* PullRequestTableViewCell.swift in Sources */,
 				80C4DA431ED51F2B0032781C /* PullRequestsTableViewController.swift in Sources */,
 				801007D31ED3D183004493B4 /* ViewController.swift in Sources */,
