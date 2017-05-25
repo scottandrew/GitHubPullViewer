@@ -137,7 +137,7 @@
         <scene sceneID="3Mz-O0-U2R">
             <objects>
                 <navigationController id="VVy-9b-Sbd" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WPE-bD-zC3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WPE-bD-zC3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -165,11 +165,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="27"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NrX-Tn-kOm">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NrX-Tn-kOm">
                                             <rect key="frame" x="8" y="0.0" width="359" height="26.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="KAA-Ei-Z4a" customClass="LineView" customModule="GitHubPullViewer" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="12.5" width="172" height="14"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="14"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAC-3f-dJL">
                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
@@ -181,7 +181,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cr5-6V-Gmw">
-                                                            <rect key="frame" x="35" y="0.0" width="137" height="14"/>
+                                                            <rect key="frame" x="35" y="0.0" width="139" height="14"/>
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -192,8 +192,15 @@
                                                         <outlet property="textLabel" destination="Cr5-6V-Gmw" id="Y10-sI-zFw"/>
                                                     </connections>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbm-uw-Xij">
+                                                    <rect key="frame" x="179" y="11" width="1" height="15.5"/>
+                                                    <color key="backgroundColor" red="0.92107592439893538" green="0.92107592439893538" blue="0.92107592439893538" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="gGO-7j-xnQ"/>
+                                                    </constraints>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="LQj-aq-Eba" customClass="LineView" customModule="GitHubPullViewer" customModuleProvider="target">
-                                                    <rect key="frame" x="187" y="12.5" width="172" height="14"/>
+                                                    <rect key="frame" x="185" y="0.0" width="174" height="14"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="751" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycp-8j-nNg">
                                                             <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
@@ -205,7 +212,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="752" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue2-NN-FOk">
-                                                            <rect key="frame" x="35" y="0.0" width="137" height="14"/>
+                                                            <rect key="frame" x="35" y="0.0" width="139" height="14"/>
                                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -219,6 +226,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KAA-Ei-Z4a" firstAttribute="width" secondItem="LQj-aq-Eba" secondAttribute="width" id="Ua4-L0-feB"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mbm-uw-Xij" secondAttribute="bottom" id="mv0-wM-z4G"/>
                                             </constraints>
                                         </stackView>
                                     </subviews>
@@ -231,6 +239,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="additionLineView" destination="LQj-aq-Eba" id="Hbf-0K-mdO"/>
+                                    <outlet property="seperatorView" destination="Mbm-uw-Xij" id="P75-gz-dqA"/>
                                     <outlet property="subtractionLineView" destination="KAA-Ei-Z4a" id="jxL-IW-4p1"/>
                                 </connections>
                             </tableViewCell>
@@ -250,7 +259,7 @@
         <scene sceneID="IFD-3g-eFF">
             <objects>
                 <navigationController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="waj-dp-jfM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3oo-1R-voJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3oo-1R-voJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
