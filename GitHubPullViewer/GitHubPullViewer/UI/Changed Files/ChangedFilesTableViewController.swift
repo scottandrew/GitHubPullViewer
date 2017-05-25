@@ -94,12 +94,15 @@ extension ChangedFilesTableViewController {
             return
         }
 
+        showActivityIndicator()
+
         //getFiles(pullRequest: PullRequest, result: @escaping ([ChangedFile], Error?) -> Void)
         GitHubAPI().getFiles(pullRequest: pullRequest) { (changedFiles: [ChangedFile], error: Error?) in
             DispatchQueue.main.async {
+                self.removeActivityIndicator()
+
                 if let error = error {
                     let alert = UIAlertController(error: error)
-
                     self.present(alert, animated: true, completion: nil)
                 }
 

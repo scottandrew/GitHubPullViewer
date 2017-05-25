@@ -39,7 +39,9 @@ class PullRequestsTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PullRequestTableViewCell", for: indexPath) as? PullRequestTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PullRequestTableViewCell",
+                                                    for: indexPath) as? PullRequestTableViewCell {
+            
             cell.pullRequest = pullRequests[indexPath.row]
 
             return cell
@@ -66,21 +68,28 @@ extension PullRequestsTableViewController {
     func refresh() {
         let gitHub = GitHubAPI()
 
+        // Show our acticity indicator
+        showActivityIndicator()
+
+        // Get the PR list.
         gitHub.getPRs  { (pullRequests, error) in
-            if let error = error {
-                let alertView = UIAlertController(error: error)
 
-                self.present(alertView, animated: true, completion: nil)
+            // No more activity indiciator needed.
+            self.removeActivityIndicator()
 
-                return
-            } else {
-                DispatchQueue.main.async {
-                    self.pullRequests = pullRequests
+            // Show error and refresh list (empty if error)
+            DispatchQueue.main.async {
+                if let error = error {
+                    let alertView = UIAlertController(error: error)
 
-                    self.tableView.reloadData()
+                    self.present(alertView, animated: true, completion: nil)
+
+                    return
                 }
+
+                self.pullRequests = pullRequests
+                self.tableView.reloadData()
             }
         }
-
     }
 }

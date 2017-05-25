@@ -25,6 +25,7 @@
 		804C17D81ED72D60006B14C3 /* PullRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C17D01ED72D60006B14C3 /* PullRequestTableViewCell.swift */; };
 		804C17D91ED72D60006B14C3 /* ChangedFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C17D21ED72D60006B14C3 /* ChangedFilesTableViewController.swift */; };
 		804C17DA1ED72D60006B14C3 /* ChangedFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C17D31ED72D60006B14C3 /* ChangedFileTableViewCell.swift */; };
+		804C17DC1ED76BE4006B14C3 /* UIView+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804C17DB1ED76BE4006B14C3 /* UIView+ActivityIndicator.swift */; };
 		80C4DA401ED476AB0032781C /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C4DA3F1ED476AB0032781C /* icomoon.ttf */; };
 		80C4DA471ED52C080032781C /* GitHubPullRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4DA461ED52C080032781C /* GitHubPullRequestViewController.swift */; };
 		80C4DA491ED59E6D0032781C /* ChangedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C4DA481ED59E6D0032781C /* ChangedFile.swift */; };
@@ -45,7 +46,7 @@
 /* Begin PBXFileReference section */
 		800FC5F41ED68FFE001B1C76 /* Patch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patch.swift; sourceTree = "<group>"; };
 		800FC5F61ED6902E001B1C76 /* PatchParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatchParser.swift; sourceTree = "<group>"; };
-		801007CD1ED3D183004493B4 /* GitHubPullViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubPullViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		801007CD1ED3D183004493B4 /* PullViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PullViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		801007D01ED3D183004493B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		801007D21ED3D183004493B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		801007D51ED3D183004493B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		804C17D01ED72D60006B14C3 /* PullRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequestTableViewCell.swift; sourceTree = "<group>"; };
 		804C17D21ED72D60006B14C3 /* ChangedFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangedFilesTableViewController.swift; sourceTree = "<group>"; };
 		804C17D31ED72D60006B14C3 /* ChangedFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangedFileTableViewCell.swift; sourceTree = "<group>"; };
+		804C17DB1ED76BE4006B14C3 /* UIView+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		80C4DA3F1ED476AB0032781C /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		80C4DA461ED52C080032781C /* GitHubPullRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubPullRequestViewController.swift; sourceTree = "<group>"; };
 		80C4DA481ED59E6D0032781C /* ChangedFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangedFile.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 		801007CE1ED3D183004493B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				801007CD1ED3D183004493B4 /* GitHubPullViewer.app */,
+				801007CD1ED3D183004493B4 /* PullViewer.app */,
 				801007E11ED3D184004493B4 /* GitHubPullViewerTests.xctest */,
 			);
 			name = Products;
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				80C4DA511ED5B61D0032781C /* UIAlertController+ErrorDisplay.swift */,
+				804C17DB1ED76BE4006B14C3 /* UIView+ActivityIndicator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,9 +225,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		801007CC1ED3D183004493B4 /* GitHubPullViewer */ = {
+		801007CC1ED3D183004493B4 /* PullViewer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 801007EA1ED3D184004493B4 /* Build configuration list for PBXNativeTarget "GitHubPullViewer" */;
+			buildConfigurationList = 801007EA1ED3D184004493B4 /* Build configuration list for PBXNativeTarget "PullViewer" */;
 			buildPhases = (
 				801007C91ED3D183004493B4 /* Sources */,
 				801007CA1ED3D183004493B4 /* Frameworks */,
@@ -234,9 +237,9 @@
 			);
 			dependencies = (
 			);
-			name = GitHubPullViewer;
+			name = PullViewer;
 			productName = GitHubPullViewer;
-			productReference = 801007CD1ED3D183004493B4 /* GitHubPullViewer.app */;
+			productReference = 801007CD1ED3D183004493B4 /* PullViewer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		801007E01ED3D184004493B4 /* GitHubPullViewerTests */ = {
@@ -293,7 +296,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				801007CC1ED3D183004493B4 /* GitHubPullViewer */,
+				801007CC1ED3D183004493B4 /* PullViewer */,
 				801007E01ED3D184004493B4 /* GitHubPullViewerTests */,
 			);
 		};
@@ -331,6 +334,7 @@
 				801007D11ED3D183004493B4 /* AppDelegate.swift in Sources */,
 				801007F21ED3D497004493B4 /* PullRequest.swift in Sources */,
 				801007F41ED3D751004493B4 /* GitHubAPI.swift in Sources */,
+				804C17DC1ED76BE4006B14C3 /* UIView+ActivityIndicator.swift in Sources */,
 				804C17DA1ED72D60006B14C3 /* ChangedFileTableViewCell.swift in Sources */,
 				80C4DA521ED5B61D0032781C /* UIAlertController+ErrorDisplay.swift in Sources */,
 				80C4DA491ED59E6D0032781C /* ChangedFile.swift in Sources */,
@@ -359,7 +363,7 @@
 /* Begin PBXTargetDependency section */
 		801007E31ED3D184004493B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 801007CC1ED3D183004493B4 /* GitHubPullViewer */;
+			target = 801007CC1ED3D183004493B4 /* PullViewer */;
 			targetProxy = 801007E21ED3D184004493B4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -547,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		801007EA1ED3D184004493B4 /* Build configuration list for PBXNativeTarget "GitHubPullViewer" */ = {
+		801007EA1ED3D184004493B4 /* Build configuration list for PBXNativeTarget "PullViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				801007EB1ED3D184004493B4 /* Debug */,
