@@ -21,6 +21,9 @@ class GitHubPullRequestViewController: UISplitViewController {
 
             detail?.viewControllers.last?.navigationItem.leftBarButtonItem = displayModeButtonItem
         }
+
+        // Keep this simple and always make all visible.
+        preferredDisplayMode = .allVisible
     }
 
 }

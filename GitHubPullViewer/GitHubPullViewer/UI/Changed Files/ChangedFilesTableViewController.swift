@@ -61,11 +61,13 @@ class ChangedFilesTableViewController: UITableViewController {
         // If the window is not on a smaller screen we need to post a notification that we have changed
         // our selection since we can't just push on to our navigation stack.
         if self.view.window?.traitCollection.horizontalSizeClass != .compact {
-            var userInfo: [AnyHashable: Any]?
+            var userInfo = [AnyHashable: Any]()
 
             if let patch = changedFiles[indexPath.row].patch {
-                userInfo = ["patch": patch]
+                userInfo["patch"] = patch
             }
+
+            userInfo["title"] = changedFiles[indexPath.row].fileName
 
             // If we have a patch show it..
             NotificationCenter.default.post(name: ChangedFilesTableViewController.selectedFilesChangedNotification,
@@ -75,6 +77,7 @@ class ChangedFilesTableViewController: UITableViewController {
         } else {
             if let diffViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiffTableViewController") as? DiffTableViewController {
 
+                diffViewController.title = changedFiles[indexPath.row].fileName
                 diffViewController.patch = changedFiles[indexPath.row].patch
                 
                 self.navigationController?.pushViewController(diffViewController, animated: true)

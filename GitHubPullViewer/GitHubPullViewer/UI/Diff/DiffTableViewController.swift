@@ -64,6 +64,7 @@ extension DiffTableViewController {
 
     func onPatchSelectionChanged(notification: Notification) {
         patch = notification.userInfo?["patch"] as? Patch
+        title = notification.userInfo?["title"] as? String
 
         tableView.reloadData()
     }

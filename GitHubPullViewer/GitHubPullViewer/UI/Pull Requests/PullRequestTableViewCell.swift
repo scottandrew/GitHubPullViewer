@@ -10,6 +10,16 @@ import UIKit
 
 class PullRequestTableViewCell: UITableViewCell {
 
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .short
+
+        return dateFormatter
+    }()
+
     @IBOutlet weak var statusIconLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -18,18 +28,30 @@ class PullRequestTableViewCell: UITableViewCell {
     var pullRequest: PullRequest? {
         didSet {
             nameLabel.text = pullRequest?.title
+
+            infoLabel.text = buildInfoString()
+
+            extendDescriptionLabel.isHidden = (pullRequest?.body.characters.count ?? 0) == 0
+            extendDescriptionLabel.text = pullRequest?.body
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+}
+
+extension PullRequestTableViewCell {
+    fileprivate func buildInfoString() -> String? {
+
+        // Build our info string if we have enough inof.
+        if let pullRequest = pullRequest, let date = pullRequest.createdDate {
+            var string = "Opened "
+
+            string += PullRequestTableViewCell.dateFormatter.string(from: date)
+
+            string += " by " + pullRequest.userName
+
+            return string
+        }
+        
+        return nil
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
