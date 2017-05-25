@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="340" y="24"/>
         </scene>
-        <!--Git Hub Pull Request View Controller-->
+        <!--Git Hub Pull Request Split View Controller-->
         <scene sceneID="Gd0-i6-cqw">
             <objects>
-                <splitViewController id="bZD-GZ-l3E" customClass="GitHubPullRequestViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="bZD-GZ-l3E" customClass="GitHubPullRequestSplitViewController" customModule="GitHubPullViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="VVy-9b-Sbd" kind="relationship" relationship="masterViewController" id="lsQ-bP-C4W"/>
                         <segue destination="waj-dp-jfM" kind="relationship" relationship="detailViewController" id="A4J-c4-r9v"/>

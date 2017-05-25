@@ -1,5 +1,5 @@
 //
-//  GitHubPullRequestViewController.swift
+//  GitHubPullRequestSplitViewController.swift
 //  GitHubPullViewer
 //
 //  Created by Scott A Andrew on 5/23/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GitHubPullRequestViewController: UISplitViewController {
+class GitHubPullRequestSplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class GitHubPullRequestViewController: UISplitViewController {
 
 }
 
-extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
+extension GitHubPullRequestSplitViewController : UISplitViewControllerDelegate {
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
 
@@ -55,15 +55,19 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
 
         var patch: Patch?
+        var title: String?
 
         // Get the top most view master view controller.
         if let navController = primaryViewController as? UINavigationController,
 
             // If the top most master is our diff controller then we need the patch and 
             // and pop it off thestack.
-            let topMostView = navController.viewControllers.last as? DiffTableViewController {
+            let diffTableViewController = navController.viewControllers.last as? DiffTableViewController {
+
             navController.popViewController(animated: false)
-            patch = topMostView.patch
+
+            patch = diffTableViewController.patch
+            title = diffTableViewController.title
         }
 
         // lets look at our primary view controller's top view. navigation view then we can show
@@ -71,9 +75,14 @@ extension GitHubPullRequestViewController : UISplitViewControllerDelegate {
 
         let newDiffController = controller?.viewControllers.first as? DiffTableViewController
 
+        // Make sure we show the expand button.
         newDiffController?.navigationItem.leftBarButtonItem = displayModeButtonItem
-        // set the patch that was viewed.
+
+        // Set the patch that was viewed.
         newDiffController?.patch = patch
+
+        // Make sure to keep the title consistent
+        newDiffController?.title = title
 
         return controller
     }
